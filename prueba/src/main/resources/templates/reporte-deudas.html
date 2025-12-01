@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reporte de Deudas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h2 { color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .filter-form { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+<h2>Reporte Web de Deudas de Clientes</h2>
+
+<div class="filter-form">
+    <h3>Filtrar Deudas</h3>
+    <form method="get" th:action="@{/reporte}">
+        <label for="idCliente">ID Cliente:</label>
+        <input type="text" id="idCliente" name="idCliente" th:value="${idClienteSeleccionado}" placeholder="Ej: CLI001">
+
+        <label for="fecha">Fecha Vencimiento (dd-MM-yyyy):</label>
+        <input type="text" id="fecha" name="fecha" th:value="${fechaSeleccionada}" placeholder="Ej: 28-02-2024">
+
+        <button type="submit">Aplicar Filtro</button>
+        <button type="button" onclick="window.location.href='/reporte'">Mostrar Todo</button>
+    </form>
+</div>
+
+<h3>Listado de Deudas (<span th:text="${deudas.size()}">0</span> encontradas)</h3>
+<table>
+    <thead>
+    <tr>
+        <th>ID Cliente</th>
+        <th>Nombre Cliente</th>
+        <th>Correo</th>
+        <th>Monto</th>
+        <th>ID Deuda</th>
+        <th>Fecha Vencimiento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="deuda : ${deudas}">
+        <td th:text="${deuda.idCliente}"></td>
+        <td th:text="${deuda.nombreCliente}"></td>
+        <td th:text="${deuda.correo}"></td>
+        <td th:text="${deuda.monto}"></td>
+        <td th:text="${deuda.idDeuda}"></td>
+        <td th:text="${deuda.fechaVencimiento}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
