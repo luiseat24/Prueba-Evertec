@@ -1,0 +1,26 @@
+# ==========================================================================================================================
+# REGISTROS VÁLIDOS (DEBEN INSERTARSE)
+# ID_CLIENTE (15); NOMBRE_CLIENTE (60); CORREO (60); MONTO (20); ID_DEUDA (15); FECHA_VENCIMIENTO (dd-mm-yyyy)
+# ==========================================================================================================================
+
+C987654321;Javier Andres Soto Salas;javier.soto@test.cl;150000.50;D001234567;28-02-2024
+A112233445;Maria Elena Rodriguez Lopez;mrodriguez@mail.com;2345678.99;DEUDA987654;15-03-2025
+B567890123;Roberto Carlos Tapia Vidal;r.tapia@empresa.cl;999.00;FACTURA0012;01-01-2023
+
+# ==========================================================================================================================
+# REGISTROS CON ERROR (DEBEN FALLAR LA VALIDACIÓN E IR AL REPORTE)
+# Estos prueban la robustez de tu método 'parseLine'.
+# ==========================================================================================================================
+
+# ERROR 1: Separador incorrecto (similar al ejemplo de la prueba)
+# Tu parser debe fallar al usar el split(";") o debe manejarlo.
+A123456789:Ana Gutierrez Pinilla:ana@gmail.com:1500.00:DEUDA0001:12-03-2021
+
+# ERROR 2: Monto no numérico (prueba que BigDecimal falle en el parseo)
+C333444555;Pedro Pablo Soto V;pedro.soto@mail.com;ABCD100;DUPLI0001;20-04-2024
+
+# ERROR 3: Largo de campo excedido (ID Cliente tiene 17 caracteres)
+L12345678901234567;Luis Perez Sanchez;lps@mail.com;500000;DEUDA0003;10-06-2024
+
+# ERROR 4: Formato de Fecha Inválido (Mes incorrecto 99-mm-yyyy)
+M987654321;Camila Belen Rojas;crojas@test.cl;12000;DEUDA0004;15-99-2024
